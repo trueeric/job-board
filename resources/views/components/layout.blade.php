@@ -13,8 +13,7 @@
 </head>
 
 <body>
-    <div class="text-4xl">This should be a beg text!</div>
-
+    {{ $slot }}
 
 </body>
 
