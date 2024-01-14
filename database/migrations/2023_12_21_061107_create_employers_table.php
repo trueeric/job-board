@@ -22,8 +22,7 @@ return new class extends Migration
 
         Schema::table('jobs', function (Blueprint $table) {
 
-            $table->foreignIdFor(\App\Models\Job::class)
-                ->nullable()
+            $table->foreignIdFor(\App\Models\Employer::class)
                 ->constrained();
         });
     }
