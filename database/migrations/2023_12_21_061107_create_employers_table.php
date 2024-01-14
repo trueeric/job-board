@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
 
             $table->string('company_name');
-            $table->foreignIdFor(\App\Models\User::class)->constrained();
+            $table->foreignIdFor(\App\Models\User::class)
+                ->nullable()->constrained();
 
             $table->timestamps();
         });

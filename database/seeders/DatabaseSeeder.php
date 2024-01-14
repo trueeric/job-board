@@ -12,23 +12,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-         \App\Models\User::factory(300)->create();
 
-         $users =\App\Models\User::all()->shuffle();
+        // \App\Models\Job::factory(100)->create(); //移至下方生成
+        \App\Models\User::factory(300)->create();
 
-        for($i = 0; $i <20; $i++){
+        $users = \App\Models\User::all()->shuffle();
+
+        for ($i = 0; $i < 20; $i++) {
             \App\Models\Employer::factory()->create([
-                'user_id' => $users->pop()->id
-            ])
+                'user_id' => $users->pop()->id,
+            ]);
         }
 
-        $employers=\App\Models\Employer::all()->shuffle();
+        $employers = \App\Models\Employer::all()->shuffle();
 
-        for($i = 0; $i <100; $i++){
-            \App\Models\Employee::factory()->create([
-                'employee_id' => $employers->random()->id
-            ])
+        for ($i = 0; $i < 100; $i++) {
+            \App\Models\Job::factory()->create([
+                'employer_id' => $employers->random()->id,
+            ]);
         }
+
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([
