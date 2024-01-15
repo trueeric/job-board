@@ -23,10 +23,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $credentails = $request->only('email', 'password');
+        $credentials = $request->only('email', 'password');
         $remember    = $request->filled('remember');
 
-        if (Auth::attempt($credentails, $remember)) {
+        if (Auth::attempt($credentials, $remember)) {
             return redirect()->intended('/');
         } else {
             return redirect()->back()
@@ -37,8 +37,13 @@ class AuthController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy()
     {
-        //
+        Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
