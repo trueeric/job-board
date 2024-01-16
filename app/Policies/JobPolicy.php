@@ -57,7 +57,9 @@ class JobPolicy
 
     public function apply(User $user, Job $job): bool
     {
-        return false;
+        // dd($user, $job, $job->hasUserApplied($user));
+
+        return !$job->hasUserApplied($user);
     }
     /**
      * Determine whether the user can permanently delete the model.
